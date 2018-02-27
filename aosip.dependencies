@@ -1,0 +1,12 @@
+[
+ {
+   "repository": "mohican16/abc_kernel_lge_bullhead",
+   "target_path": "kernel/lge/bullhead",
+   "branch": "o2"
+ },
+ {
+   "repository": "anirudhgupta109/android_vendor_lge",
+   "target_path": "vendor/lge",
+   "branch": "aosip"
+ }
+]

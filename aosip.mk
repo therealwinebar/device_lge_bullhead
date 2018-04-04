@@ -11,15 +11,19 @@
 # KIND, either express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
-#Bootanimation
+# Bootanimation
 TARGET_SCREEN_WIDTH := 1080
 TARGET_SCREEN_HEIGHT := 1920
 
-# Inherit some common DU stuff
+# Inherit some common AOSiP stuff
 $(call inherit-product, vendor/aosip/config/common_full_phone.mk)
 
 # Inherit AOSP device configuration for bullhead
 $(call inherit-product, device/lge/bullhead/aosp_bullhead.mk)
+
+# Maintainer Prop
+PRODUCT_BUILD_PROP_OVERRIDES += \
+DEVICE_MAINTAINERS="Anirudh Gupta"
 
 # Override AOSP build properties
 PRODUCT_NAME := aosip_bullhead

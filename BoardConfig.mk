@@ -129,7 +129,7 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_NEEDS_VENDORIMAGE_SYMLINK := true
 
 # Build a separate vendor.img
-TARGET_COPY_OUT_VENDOR := vendor
+TARGET_COPY_OUT_VENDOR := system
 
 TARGET_RECOVERY_FSTAB = device/lge/bullhead/fstab.bullhead
 

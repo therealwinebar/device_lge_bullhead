@@ -59,15 +59,18 @@ write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
 restorecon -R /sys/devices/system/cpu # must restore after interactive
 write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load 1
 write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif 1
-write /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay 19000
-write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 99
-write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate 20000
-write /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq 960000
+write /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay 0
+write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 100
+write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate 60000
+write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack 30000
+write /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq 0
 write /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy 1
-write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "65 460800:75 960000:80"
-write /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time 40000
+write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "29 384000:88 600000:90 787200:92 960000:93 1248000:98"
+write /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time 60000
 write /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis 80000
 write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 384000
+write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1440000
+write /sys/devices/system/cpu/cpu0/cpufreq/interactive/ignore_hispeed_on_notif 1
 
 # online CPU4
 write /sys/devices/system/cpu/cpu4/online 1
@@ -77,15 +80,18 @@ write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor interactive
 restorecon -R /sys/devices/system/cpu # must restore after interactive
 write /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_sched_load 1
 write /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_migration_notif 1
-write /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay 19000
-write /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load 99
-write /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate 20000
-write /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq 1248000
+write /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay 0
+write /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load 100
+write /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate 30000
+write /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_slack 480000
+write /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq 0
 write /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy 1
-write /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads "70 960000:80 1248000:85"
-write /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time 40000
+write /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads 98
+write /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time 30000
 write /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis 80000
 write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 633600
+write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 1958400
+write /sys/devices/system/cpu/cpu4/cpufreq/interactive/ignore_hispeed_on_notif 1
 
 # restore A57's max
 copy /sys/devices/system/cpu/cpu4/cpufreq/cpuinfo_max_freq /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
@@ -97,8 +103,8 @@ write /sys/devices/system/cpu/cpu5/online 1
 write /sys/module/msm_performance/parameters/cpu_max_freq "4:4294967295 5:4294967295"
 
 # input boost configuration
-write /sys/module/cpu_boost/parameters/input_boost_freq "0:960000"
-write /sys/module/cpu_boost/parameters/input_boost_ms 40
+write /sys/module/cpu_boost/parameters/input_boost_freq "0:1248000 4:672000"
+write /sys/module/cpu_boost/parameters/input_boost_ms 1500
 
 # Setting B.L scheduler parameters
 write /proc/sys/kernel/sched_migration_fixup 1
@@ -125,5 +131,12 @@ get-set-forall /sys/devices/soc.0/qcom,bcl.*/hotplug_mask $bcl_hotplug_mask
 get-set-forall /sys/devices/soc.0/qcom,bcl.*/hotplug_soc_mask $bcl_hotplug_soc_mask
 get-set-forall /sys/devices/soc.0/qcom,bcl.*/mode enable
 
-# set GPU default power level to 5 (180MHz) instead of 4 (305MHz)
-write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 5
+# set GPU default power level to 4 (305MHz) as it is smoother
+write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 4
+write /sys/class/kgsl/kgsl-3d0/devfreq/governor msm-adreno-tz
+
+# these minfree settings are set like this otherwise Android kills apps like Pokemon GO
+# almost instantly after they go to the background. Even with KSM and ZRAM block of 1Gb
+# it still happens. With these minfree settings (same parameters as the Nexus 5) the issue
+# doesn't happen anymore	thanks to @franciscofranco
+write /sys/module/lowmemorykiller/parameters/minfree "18432,23040,27648,32256,36864,46080"

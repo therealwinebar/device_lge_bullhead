@@ -141,6 +141,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/lge/bullhead/init.bullhead.power.sh:system/bin/init.bullhead.power.sh
 
+# Reduce cost of scrypt for FBE CE decryption
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.crypto.scrypt_params=13:3:1
+
 # MBN
 PRODUCT_COPY_FILES += \
     device/lge/bullhead/init.bullhead.sh:system/bin/init.bullhead.sh

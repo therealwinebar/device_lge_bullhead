@@ -68,7 +68,7 @@ write /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy 1
 write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "29 384000:88 600000:90 787200:92 960000:93 1248000:98"
 write /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time 60000
 write /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis 80000
-write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 384000
+write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 302000
 write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1440000
 write /sys/devices/system/cpu/cpu0/cpufreq/interactive/ignore_hispeed_on_notif 1
 
@@ -89,7 +89,7 @@ write /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy 1
 write /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads 98
 write /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time 30000
 write /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis 80000
-write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 633600
+write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 302400
 write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 1958400
 write /sys/devices/system/cpu/cpu4/cpufreq/interactive/ignore_hispeed_on_notif 1
 

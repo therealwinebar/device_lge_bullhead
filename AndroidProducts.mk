@@ -15,9 +15,8 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/aosp_bullhead.mk \
-    $(LOCAL_DIR)/aosp_bullhead_svelte.mk
+    $(LOCAL_DIR)/aosip_bullhead.mk \
 
 COMMON_LUNCH_CHOICES := \
-    aosp_bullhead-userdebug \
-    aosp_bullhead_svelte-userdebug
+    aosip_bullhead-userdebug \
+    aosip_bullhead-eng

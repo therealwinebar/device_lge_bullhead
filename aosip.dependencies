@@ -1,7 +1,9 @@
 [
   {
-    "repository"  : "kernel_lge_bullhead",
-    "target_path" : "kernel/lge/bullhead"
+    "repository"  : "zkp/bullhead",
+    "target_path" : "kernel/lge/bullhead",
+    "branch"      : "latest",
+    "remote"      : "gitlab"
   },
   {
     "repository"  : "vendor_lge",

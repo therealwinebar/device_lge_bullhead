@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <mixer>
     <!-- These are the initial mixer settings -->
+    <ctl name="SLIMBUS_0_RX BitWidth" value="S24_LE" />
     <ctl name="Voice Rx Device Mute" id="0" value="0" />
     <ctl name="Voice Rx Device Mute" id="1" value="-1" />
     <ctl name="Voice Rx Device Mute" id="2" value="20" />
@@ -2080,8 +2081,10 @@
         <path name="unprocessed-handset-mic" />
     </path>
 
+    <!-- CAMCORDER MIC 24bit -->
     <path name="camcorder-mic">
         <path name="camcorder-handset-mic" />
+        <ctl name="SLIM_0_TX Format" value="S24_LE" />
     </path>
 
     <path name="hdmi-tx">
@@ -2375,6 +2378,17 @@
     <path name="listen-handset-mic">
         <ctl name="MADONOFF Switch" value="1" />
         <ctl name="MAD Input" value="DMIC1" />
+    </path>
+
+    <path name="set-capture-format-24le">
+        <ctl name="SLIM_0_TX Format" value="S24_LE" />
+    </path>
+    <path name="set-capture-format-16le">
+        <ctl name="SLIM_0_TX Format" value="S16_LE" />
+    </path>
+
+    <path name="set-capture-format-default">
+        <path name="set-capture-format-16le" />
     </path>
 
     <!-- Added for ADSP testfwk -->

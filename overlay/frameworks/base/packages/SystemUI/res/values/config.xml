@@ -36,5 +36,8 @@
 
     <!-- Doze: can we assume the pickup sensor includes a proximity check? -->
     <bool name="doze_pickup_performs_proximity_check">true</bool>
+
+    <!-- Show battery icon in the QS Panel instead of in the header -->
+    <bool name="config_batteryInQSPanel">false</bool>
 </resources>
 

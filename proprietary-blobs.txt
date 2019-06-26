@@ -90,11 +90,17 @@
 /system/framework/qcrilhook.jar
 /system/framework/rcsimssettings.jar
 /system/framework/rcsservice.jar
+/system/lib64/libaptX_encoder.so
+/system/lib64/libaptXHD_encoder.so
 /system/lib64/hw/gps.msm8992.so
 /system/lib64/libgps.utils.so
 /system/lib64/libiperf.so
+/system/lib64/libldacBT_enc.so
+/system/lib/libaptX_encoder.so
+/system/lib/libaptXHD_encoder.so
 /system/lib/hw/gps.msm8992.so
 /system/lib/libgps.utils.so
 /system/lib/libiperf.so
+/system/lib/libldacBT_enc.so
 /system/xbin/iperf3
 /IMAGES/vendor.img

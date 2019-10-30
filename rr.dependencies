@@ -1,0 +1,16 @@
+[
+  {
+    "remote"      : "github",
+    "repository"  : "svlog/kernel_lge_bullhead",
+    "target_path" : "kernel/lge/bullhead",
+    "branch"      : "stable"
+  },
+  {
+    "remote"      : "github",
+    "repository"  : "AOSiP-Devices/vendor_lge",
+    "target_path" : "vendor/lge",
+    "branch"      : "pie"
+  }
+]
+
+
